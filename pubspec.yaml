@@ -1,6 +1,9 @@
 name: cupertino_date_selector
 description: "Highly customizable Cupertino modal selector for items, dates, times, and durations."
-version: 0.0.1
+version: 0.0.2
+homepage: https://github.com/ShithinCherathuparambil/cupertino_date_selector
+repository: https://github.com/ShithinCherathuparambil/cupertino_date_selector
+issue_tracker: https://github.com/ShithinCherathuparambil/cupertino_date_selector/issues
 
 environment:
   sdk: ^3.11.3

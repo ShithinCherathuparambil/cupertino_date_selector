@@ -21,7 +21,7 @@ Add this package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  cupertino_date_selector: ^0.0.1
+  cupertino_date_selector: ^0.0.2
 ```
 
 Then run:
@@ -119,4 +119,3 @@ theme: const CupertinoDateSelectorThemeData(
 ## Example app
 
 A complete demo is available in `example/lib/main.dart` covering all picker modes for both modal and inline widget usage.
-# cupertino_date_selector

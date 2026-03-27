@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 import 'cupertino_date_selector_theme.dart';
 
+/// Builder used to render a custom selector header.
 typedef SelectorHeaderBuilder =
     Widget Function(BuildContext context, VoidCallback close);
 
+/// Supported picker modes for [CupertinoDateSelector].
 enum CupertinoDateSelectorType {
   items,
   date,
@@ -52,6 +54,7 @@ class CupertinoDateSelector {
        assert(minuteInterval > 0),
        assert(timerSecondInterval > 0);
 
+  /// Creates a modal wheel picker for a custom list of [items].
   factory CupertinoDateSelector.items({
     required List<Widget> items,
     int selectedItemIndex = 0,
@@ -96,6 +99,7 @@ class CupertinoDateSelector {
     );
   }
 
+  /// Creates a modal date picker.
   factory CupertinoDateSelector.date({
     DateTime? initialDateTime,
     DateTime? minDateTime,
@@ -144,6 +148,7 @@ class CupertinoDateSelector {
     );
   }
 
+  /// Creates a modal time picker.
   factory CupertinoDateSelector.time({
     DateTime? initialDateTime,
     int minuteInterval = 1,
@@ -190,6 +195,7 @@ class CupertinoDateSelector {
     );
   }
 
+  /// Creates a modal combined date and time picker.
   factory CupertinoDateSelector.dateTime({
     DateTime? initialDateTime,
     DateTime? minDateTime,
@@ -240,6 +246,7 @@ class CupertinoDateSelector {
     );
   }
 
+  /// Creates a modal year-only picker.
   factory CupertinoDateSelector.year({
     DateTime? initialDateTime,
     DateTime? minDateTime,
@@ -286,6 +293,7 @@ class CupertinoDateSelector {
     );
   }
 
+  /// Creates a modal month + year picker.
   factory CupertinoDateSelector.monthYear({
     DateTime? initialDateTime,
     DateTime? minDateTime,
@@ -332,6 +340,7 @@ class CupertinoDateSelector {
     );
   }
 
+  /// Creates a modal month-only picker.
   factory CupertinoDateSelector.month({
     DateTime? initialDateTime,
     ValueChanged<DateTime>? onChange,
@@ -380,6 +389,7 @@ class CupertinoDateSelector {
     );
   }
 
+  /// Creates a modal duration picker.
   factory CupertinoDateSelector.duration({
     Duration initialDuration = Duration.zero,
     CupertinoTimerPickerMode timerMode = CupertinoTimerPickerMode.hm,
@@ -803,9 +813,11 @@ class CupertinoDateSelector {
 }
 
 /// Inline widget variant for rendering selector in widget tree.
+/// Inline widget variant for rendering selectors in a page.
 class CupertinoDateSelectorWidget extends StatefulWidget {
   const CupertinoDateSelectorWidget._({super.key, required this.selector});
 
+  /// Creates an inline wheel picker for a custom list of [items].
   factory CupertinoDateSelectorWidget.items({
     Key? key,
     required List<Widget> items,
@@ -848,6 +860,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     );
   }
 
+  /// Creates an inline date picker.
   factory CupertinoDateSelectorWidget.date({
     Key? key,
     DateTime? initialDateTime,
@@ -888,6 +901,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     );
   }
 
+  /// Creates an inline time picker.
   factory CupertinoDateSelectorWidget.time({
     Key? key,
     DateTime? initialDateTime,
@@ -926,6 +940,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     );
   }
 
+  /// Creates an inline combined date and time picker.
   factory CupertinoDateSelectorWidget.dateTime({
     Key? key,
     DateTime? initialDateTime,
@@ -968,6 +983,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     );
   }
 
+  /// Creates an inline year-only picker.
   factory CupertinoDateSelectorWidget.year({
     Key? key,
     DateTime? initialDateTime,
@@ -1006,6 +1022,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     );
   }
 
+  /// Creates an inline month + year picker.
   factory CupertinoDateSelectorWidget.monthYear({
     Key? key,
     DateTime? initialDateTime,
@@ -1044,6 +1061,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     );
   }
 
+  /// Creates an inline month-only picker.
   factory CupertinoDateSelectorWidget.month({
     Key? key,
     DateTime? initialDateTime,
@@ -1084,6 +1102,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     );
   }
 
+  /// Creates an inline duration picker.
   factory CupertinoDateSelectorWidget.duration({
     Key? key,
     Duration initialDuration = Duration.zero,
