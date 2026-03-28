@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:intl/intl.dart' hide TextDirection;
 
+import 'cupertino_date_selector_controller.dart';
+import 'cupertino_date_selector_modifiers.dart';
+import 'cupertino_date_selector_selection_mode.dart';
 import 'cupertino_date_selector_theme.dart';
 
 /// Builder used to render a custom selector header.
@@ -19,7 +24,10 @@ enum CupertinoDateSelectorType {
   duration,
 }
 
-/// Highly customizable Cupertino-style selector.
+/// Cupertino-style modal selector: call [show] to present a bottom sheet.
+///
+/// For inline UI or custom chrome, use [CupertinoDateSelectorWidget] or
+/// [CupertinoDateSelectorPickerBody].
 class CupertinoDateSelector {
   CupertinoDateSelector._({
     required this.type,
@@ -50,6 +58,13 @@ class CupertinoDateSelector {
     this.items = const <Widget>[],
     this.selectedItemIndex = 0,
     this.dateOrder,
+    this.selectionMode = CupertinoDateSelectorSelectionMode.live,
+    this.enableHapticFeedback = false,
+    this.locale,
+    this.modalBarrierColor,
+    this.useRootNavigator = false,
+    this.monthLabelBuilder,
+    this.semanticsLabel,
   }) : assert(itemExtent > 0),
        assert(minuteInterval > 0),
        assert(timerSecondInterval > 0);
@@ -75,6 +90,7 @@ class CupertinoDateSelector {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
   }) {
     return CupertinoDateSelector._(
       type: CupertinoDateSelectorType.items,
@@ -96,6 +112,14 @@ class CupertinoDateSelector {
       buttonContent: buttonContent,
       buttonAlignment: buttonAlignment,
       submitButtonDecoration: submitButtonDecoration,
+      selectionMode:
+          modifiers.selectionMode ?? CupertinoDateSelectorSelectionMode.live,
+      enableHapticFeedback: modifiers.enableHapticFeedback ?? false,
+      locale: modifiers.locale,
+      modalBarrierColor: modifiers.modalBarrierColor,
+      useRootNavigator: modifiers.useRootNavigator ?? false,
+      monthLabelBuilder: modifiers.monthLabelBuilder,
+      semanticsLabel: modifiers.semanticsLabel,
     );
   }
 
@@ -119,6 +143,7 @@ class CupertinoDateSelector {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
   }) {
     return CupertinoDateSelector._(
       type: CupertinoDateSelectorType.date,
@@ -145,6 +170,14 @@ class CupertinoDateSelector {
       buttonContent: buttonContent,
       buttonAlignment: buttonAlignment,
       submitButtonDecoration: submitButtonDecoration,
+      selectionMode:
+          modifiers.selectionMode ?? CupertinoDateSelectorSelectionMode.live,
+      enableHapticFeedback: modifiers.enableHapticFeedback ?? false,
+      locale: modifiers.locale,
+      modalBarrierColor: modifiers.modalBarrierColor,
+      useRootNavigator: modifiers.useRootNavigator ?? false,
+      monthLabelBuilder: modifiers.monthLabelBuilder,
+      semanticsLabel: modifiers.semanticsLabel,
     );
   }
 
@@ -167,6 +200,7 @@ class CupertinoDateSelector {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
   }) {
     return CupertinoDateSelector._(
       type: CupertinoDateSelectorType.time,
@@ -192,6 +226,14 @@ class CupertinoDateSelector {
       buttonContent: buttonContent,
       buttonAlignment: buttonAlignment,
       submitButtonDecoration: submitButtonDecoration,
+      selectionMode:
+          modifiers.selectionMode ?? CupertinoDateSelectorSelectionMode.live,
+      enableHapticFeedback: modifiers.enableHapticFeedback ?? false,
+      locale: modifiers.locale,
+      modalBarrierColor: modifiers.modalBarrierColor,
+      useRootNavigator: modifiers.useRootNavigator ?? false,
+      monthLabelBuilder: modifiers.monthLabelBuilder,
+      semanticsLabel: modifiers.semanticsLabel,
     );
   }
 
@@ -216,6 +258,7 @@ class CupertinoDateSelector {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
   }) {
     return CupertinoDateSelector._(
       type: CupertinoDateSelectorType.dateTime,
@@ -243,6 +286,14 @@ class CupertinoDateSelector {
       buttonContent: buttonContent,
       buttonAlignment: buttonAlignment,
       submitButtonDecoration: submitButtonDecoration,
+      selectionMode:
+          modifiers.selectionMode ?? CupertinoDateSelectorSelectionMode.live,
+      enableHapticFeedback: modifiers.enableHapticFeedback ?? false,
+      locale: modifiers.locale,
+      modalBarrierColor: modifiers.modalBarrierColor,
+      useRootNavigator: modifiers.useRootNavigator ?? false,
+      monthLabelBuilder: modifiers.monthLabelBuilder,
+      semanticsLabel: modifiers.semanticsLabel,
     );
   }
 
@@ -265,6 +316,7 @@ class CupertinoDateSelector {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
   }) {
     return CupertinoDateSelector._(
       type: CupertinoDateSelectorType.year,
@@ -290,6 +342,14 @@ class CupertinoDateSelector {
       buttonContent: buttonContent,
       buttonAlignment: buttonAlignment,
       submitButtonDecoration: submitButtonDecoration,
+      selectionMode:
+          modifiers.selectionMode ?? CupertinoDateSelectorSelectionMode.live,
+      enableHapticFeedback: modifiers.enableHapticFeedback ?? false,
+      locale: modifiers.locale,
+      modalBarrierColor: modifiers.modalBarrierColor,
+      useRootNavigator: modifiers.useRootNavigator ?? false,
+      monthLabelBuilder: modifiers.monthLabelBuilder,
+      semanticsLabel: modifiers.semanticsLabel,
     );
   }
 
@@ -312,6 +372,7 @@ class CupertinoDateSelector {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
   }) {
     return CupertinoDateSelector._(
       type: CupertinoDateSelectorType.monthYear,
@@ -337,6 +398,14 @@ class CupertinoDateSelector {
       buttonContent: buttonContent,
       buttonAlignment: buttonAlignment,
       submitButtonDecoration: submitButtonDecoration,
+      selectionMode:
+          modifiers.selectionMode ?? CupertinoDateSelectorSelectionMode.live,
+      enableHapticFeedback: modifiers.enableHapticFeedback ?? false,
+      locale: modifiers.locale,
+      modalBarrierColor: modifiers.modalBarrierColor,
+      useRootNavigator: modifiers.useRootNavigator ?? false,
+      monthLabelBuilder: modifiers.monthLabelBuilder,
+      semanticsLabel: modifiers.semanticsLabel,
     );
   }
 
@@ -360,6 +429,7 @@ class CupertinoDateSelector {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
   }) {
     return CupertinoDateSelector._(
       type: CupertinoDateSelectorType.month,
@@ -386,6 +456,14 @@ class CupertinoDateSelector {
       buttonContent: buttonContent,
       buttonAlignment: buttonAlignment,
       submitButtonDecoration: submitButtonDecoration,
+      selectionMode:
+          modifiers.selectionMode ?? CupertinoDateSelectorSelectionMode.live,
+      enableHapticFeedback: modifiers.enableHapticFeedback ?? false,
+      locale: modifiers.locale,
+      modalBarrierColor: modifiers.modalBarrierColor,
+      useRootNavigator: modifiers.useRootNavigator ?? false,
+      monthLabelBuilder: modifiers.monthLabelBuilder,
+      semanticsLabel: modifiers.semanticsLabel,
     );
   }
 
@@ -408,6 +486,7 @@ class CupertinoDateSelector {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
   }) {
     return CupertinoDateSelector._(
       type: CupertinoDateSelectorType.duration,
@@ -433,6 +512,14 @@ class CupertinoDateSelector {
       buttonContent: buttonContent,
       buttonAlignment: buttonAlignment,
       submitButtonDecoration: submitButtonDecoration,
+      selectionMode:
+          modifiers.selectionMode ?? CupertinoDateSelectorSelectionMode.live,
+      enableHapticFeedback: modifiers.enableHapticFeedback ?? false,
+      locale: modifiers.locale,
+      modalBarrierColor: modifiers.modalBarrierColor,
+      useRootNavigator: modifiers.useRootNavigator ?? false,
+      monthLabelBuilder: modifiers.monthLabelBuilder,
+      semanticsLabel: modifiers.semanticsLabel,
     );
   }
 
@@ -466,51 +553,88 @@ class CupertinoDateSelector {
   final int selectedItemIndex;
   final DatePickerDateOrder? dateOrder;
 
+  final CupertinoDateSelectorSelectionMode selectionMode;
+  final bool enableHapticFeedback;
+  final Locale? locale;
+  final Color? modalBarrierColor;
+  final bool useRootNavigator;
+  final String Function(int month, Locale locale)? monthLabelBuilder;
+  final String? semanticsLabel;
+
+  /// Builds only the scrollable wheels (no header, divider, or submit area).
+  Widget buildPicker(
+    BuildContext context, {
+    required dynamic value,
+    required ValueChanged<dynamic> onChanged,
+  }) {
+    Widget child = _buildPicker(context, value, onChanged);
+    final String? label = semanticsLabel;
+    if (label != null && label.isNotEmpty) {
+      child = Semantics(label: label, child: child);
+    }
+    return child;
+  }
+
   Future<T?> show<T>(BuildContext context) async {
     dynamic currentValue = _initialValue();
 
     final result = await showCupertinoModalPopup<T>(
       context: context,
       barrierDismissible: dismissible,
+      barrierColor: modalBarrierColor ?? const Color(0x33000000),
+      useRootNavigator: useRootNavigator,
       builder: (ctx) {
-        return Directionality(
-          textDirection: layoutDirection ?? Directionality.of(ctx),
-          child: SafeArea(
-            top: false,
-            left: false,
-            right: false,
-            bottom: useSafeArea,
-            child: Material(
-              color: Colors.transparent,
-              child: Container(
-                height: height,
-                decoration: BoxDecoration(
-                  color: theme.backgroundColor,
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(theme.topCornerRadius),
+        return StatefulBuilder(
+          builder: (ctx, setModalState) {
+            return Directionality(
+              textDirection:
+                  layoutDirection ?? Directionality.of(context),
+              child: SafeArea(
+                top: false,
+                left: false,
+                right: false,
+                bottom: useSafeArea,
+                child: Material(
+                  color: Colors.transparent,
+                  child: Container(
+                    height: height,
+                    decoration: BoxDecoration(
+                      color: theme.backgroundColor,
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(theme.topCornerRadius),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        _buildHeader(ctx),
+                        Expanded(
+                          child: buildPicker(
+                            ctx,
+                            value: currentValue,
+                            onChanged: (value) {
+                              currentValue = value;
+                              if (selectionMode ==
+                                  CupertinoDateSelectorSelectionMode.live) {
+                                onChange?.call(value);
+                              }
+                              setModalState(() {});
+                            },
+                          ),
+                        ),
+                        if (showSubmitButton && onSubmit != null)
+                          _buildSubmitButton(ctx, currentValue),
+                      ],
+                    ),
                   ),
                 ),
-                child: Column(
-                  children: [
-                    _buildHeader(ctx),
-                    Expanded(
-                      child: _buildPicker(currentValue, (value) {
-                        currentValue = value;
-                        onChange?.call(value);
-                      }),
-                    ),
-                    if (showSubmitButton && onSubmit != null)
-                      _buildSubmitButton(ctx, currentValue),
-                  ],
-                ),
               ),
-            ),
-          ),
+            );
+          },
         );
       },
     );
 
-    onDismiss?.call(currentValue);
+    onDismiss?.call(result ?? currentValue);
     return result;
   }
 
@@ -544,19 +668,37 @@ class CupertinoDateSelector {
     return const SizedBox.shrink();
   }
 
+  String _monthNameFor(BuildContext context, int month) {
+    final Locale loc =
+        locale ?? Localizations.maybeLocaleOf(context) ?? const Locale('en');
+    final String Function(int month, Locale locale)? builder = monthLabelBuilder;
+    if (builder != null) {
+      return builder(month, loc);
+    }
+    return DateFormat.MMMM(loc.toString()).format(DateTime(2000, month));
+  }
+
   Widget _buildPicker(
+    BuildContext context,
     dynamic initialValue,
     ValueChanged<dynamic> onValueChange,
   ) {
+    void forward(dynamic v) {
+      if (enableHapticFeedback) {
+        HapticFeedback.selectionClick();
+      }
+      onValueChange(v);
+    }
+
     if (type == CupertinoDateSelectorType.items) {
-      final controller = FixedExtentScrollController(
+      final FixedExtentScrollController controller = FixedExtentScrollController(
         initialItem: initialValue as int,
       );
       return CupertinoPicker(
         scrollController: controller,
         itemExtent: itemExtent,
         selectionOverlay: selectionOverlay,
-        onSelectedItemChanged: onValueChange,
+        onSelectedItemChanged: forward,
         children: items,
       );
     }
@@ -566,16 +708,16 @@ class CupertinoDateSelector {
         mode: timerMode,
         initialTimerDuration: initialValue as Duration,
         secondInterval: timerSecondInterval,
-        onTimerDurationChanged: onValueChange,
+        onTimerDurationChanged: forward,
       );
     }
 
     if (type == CupertinoDateSelectorType.year) {
-      return _buildYearPicker(initialValue as DateTime, onValueChange);
+      return _buildYearPicker(initialValue as DateTime, forward);
     }
 
     if (type == CupertinoDateSelectorType.month) {
-      return _buildMonthPicker(initialValue as DateTime, onValueChange);
+      return _buildMonthPicker(context, initialValue as DateTime, forward);
     }
 
     DateTime? normalizedMinimumDate = _normalizedPickerBoundary(
@@ -607,7 +749,7 @@ class CupertinoDateSelector {
       maximumDate: normalizedMaximumDate,
       minuteInterval: minuteInterval,
       use24hFormat: use24hFormat,
-      onDateTimeChanged: (date) => onValueChange(_normalizeDate(date)),
+      onDateTimeChanged: (date) => forward(_normalizeDate(date)),
     );
   }
 
@@ -632,6 +774,10 @@ class CupertinoDateSelector {
                   horizontal: 16,
                 ),
                 onPressed: () {
+                  if (selectionMode ==
+                      CupertinoDateSelectorSelectionMode.commitOnSubmit) {
+                    onChange?.call(currentValue);
+                  }
                   onSubmit?.call(currentValue);
                   if (closeOnSubmit) {
                     Navigator.of(context).pop(currentValue);
@@ -754,68 +900,135 @@ class CupertinoDateSelector {
     final int safeMaxYear = maxYear < minYear ? minYear : maxYear;
     final int initialYear = initialValue.year.clamp(minYear, safeMaxYear);
     final int initialItem = initialYear - minYear;
-    final controller = FixedExtentScrollController(initialItem: initialItem);
     final List<int> years = List<int>.generate(
       (safeMaxYear - minYear) + 1,
       (index) => minYear + index,
     );
+    final TextStyle baseStyle = theme.itemTextStyle;
+    final TextStyle selectedStyle =
+        theme.selectedWheelItemTextStyle ?? theme.itemTextStyle;
 
-    return CupertinoPicker(
-      scrollController: controller,
+    return _StyledIndexPicker(
+      itemCount: years.length,
+      initialItemIndex: initialItem,
       itemExtent: itemExtent,
       selectionOverlay: selectionOverlay,
       onSelectedItemChanged: (index) => onValueChange(DateTime(years[index])),
-      children: years
-          .map(
-            (year) => Center(
-              child: Text(year.toString(), style: theme.itemTextStyle),
-            ),
-          )
-          .toList(),
+      itemBuilder: (context, index, isSelected) => Center(
+        child: Text(
+          years[index].toString(),
+          style: isSelected ? selectedStyle : baseStyle,
+        ),
+      ),
     );
   }
 
   Widget _buildMonthPicker(
+    BuildContext context,
     DateTime initialValue,
     ValueChanged<dynamic> onValueChange,
   ) {
     final int initialMonth = initialValue.month.clamp(1, 12);
-    final controller = FixedExtentScrollController(
-      initialItem: initialMonth - 1,
-    );
-    final List<String> monthNames = <String>[
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
+    final int initialItem = initialMonth - 1;
 
-    return CupertinoPicker(
-      scrollController: controller,
+    return _StyledIndexPicker(
+      itemCount: 12,
+      initialItemIndex: initialItem,
       itemExtent: itemExtent,
       selectionOverlay: selectionOverlay,
-      onSelectedItemChanged: (index) => onValueChange(DateTime(1, index + 1)),
-      children: monthNames
-          .map(
-            (month) => Center(child: Text(month, style: theme.itemTextStyle)),
-          )
-          .toList(),
+      onSelectedItemChanged: (index) =>
+          onValueChange(DateTime(1, index + 1)),
+      itemBuilder: (context, index, isSelected) {
+        final String label = _monthNameFor(context, index + 1);
+        final TextStyle baseStyle = theme.itemTextStyle;
+        final TextStyle selectedStyle =
+            theme.selectedWheelItemTextStyle ?? theme.itemTextStyle;
+        return Center(
+          child: Text(
+            label,
+            style: isSelected ? selectedStyle : baseStyle,
+          ),
+        );
+      },
     );
   }
 }
 
-/// Inline widget variant for rendering selector in widget tree.
+typedef _PickerItemBuilder =
+    Widget Function(BuildContext context, int index, bool isSelected);
+
+class _StyledIndexPicker extends StatefulWidget {
+  const _StyledIndexPicker({
+    required this.itemCount,
+    required this.initialItemIndex,
+    required this.itemExtent,
+    required this.selectionOverlay,
+    required this.onSelectedItemChanged,
+    required this.itemBuilder,
+  });
+
+  final int itemCount;
+  final int initialItemIndex;
+  final double itemExtent;
+  final Widget? selectionOverlay;
+  final ValueChanged<int> onSelectedItemChanged;
+  final _PickerItemBuilder itemBuilder;
+
+  @override
+  State<_StyledIndexPicker> createState() => _StyledIndexPickerState();
+}
+
+class _StyledIndexPickerState extends State<_StyledIndexPicker> {
+  late int _selectedIndex;
+  late FixedExtentScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    assert(widget.itemCount > 0);
+    _selectedIndex = widget.initialItemIndex.clamp(0, widget.itemCount - 1);
+    _scrollController = FixedExtentScrollController(initialItem: _selectedIndex);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(_StyledIndexPicker oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.itemCount != widget.itemCount && widget.itemCount > 0) {
+      _selectedIndex = _selectedIndex.clamp(0, widget.itemCount - 1);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoPicker(
+      scrollController: _scrollController,
+      itemExtent: widget.itemExtent,
+      selectionOverlay: widget.selectionOverlay,
+      onSelectedItemChanged: (index) {
+        setState(() => _selectedIndex = index);
+        widget.onSelectedItemChanged(index);
+      },
+      children: List<Widget>.generate(
+        widget.itemCount,
+        (i) => widget.itemBuilder(context, i, i == _selectedIndex),
+      ),
+    );
+  }
+}
+
 /// Inline widget variant for rendering selectors in a page.
 class CupertinoDateSelectorWidget extends StatefulWidget {
-  const CupertinoDateSelectorWidget._({super.key, required this.selector});
+  const CupertinoDateSelectorWidget._({
+    super.key,
+    required this.selector,
+    this.controller,
+  });
 
   /// Creates an inline wheel picker for a custom list of [items].
   factory CupertinoDateSelectorWidget.items({
@@ -837,9 +1050,12 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
+    CupertinoDateSelectorController? controller,
   }) {
     return CupertinoDateSelectorWidget._(
       key: key,
+      controller: controller,
       selector: CupertinoDateSelector.items(
         items: items,
         selectedItemIndex: selectedItemIndex,
@@ -856,6 +1072,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
         buttonContent: buttonContent,
         buttonAlignment: buttonAlignment,
         submitButtonDecoration: submitButtonDecoration,
+        modifiers: modifiers,
       ),
     );
   }
@@ -879,9 +1096,12 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
+    CupertinoDateSelectorController? controller,
   }) {
     return CupertinoDateSelectorWidget._(
       key: key,
+      controller: controller,
       selector: CupertinoDateSelector.date(
         initialDateTime: initialDateTime,
         minDateTime: minDateTime,
@@ -897,6 +1117,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
         buttonContent: buttonContent,
         buttonAlignment: buttonAlignment,
         submitButtonDecoration: submitButtonDecoration,
+        modifiers: modifiers,
       ),
     );
   }
@@ -919,9 +1140,12 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
+    CupertinoDateSelectorController? controller,
   }) {
     return CupertinoDateSelectorWidget._(
       key: key,
+      controller: controller,
       selector: CupertinoDateSelector.time(
         initialDateTime: initialDateTime,
         minuteInterval: minuteInterval,
@@ -936,6 +1160,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
         buttonContent: buttonContent,
         buttonAlignment: buttonAlignment,
         submitButtonDecoration: submitButtonDecoration,
+        modifiers: modifiers,
       ),
     );
   }
@@ -960,9 +1185,12 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
+    CupertinoDateSelectorController? controller,
   }) {
     return CupertinoDateSelectorWidget._(
       key: key,
+      controller: controller,
       selector: CupertinoDateSelector.dateTime(
         initialDateTime: initialDateTime,
         minDateTime: minDateTime,
@@ -979,6 +1207,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
         buttonContent: buttonContent,
         buttonAlignment: buttonAlignment,
         submitButtonDecoration: submitButtonDecoration,
+        modifiers: modifiers,
       ),
     );
   }
@@ -1001,9 +1230,12 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
+    CupertinoDateSelectorController? controller,
   }) {
     return CupertinoDateSelectorWidget._(
       key: key,
+      controller: controller,
       selector: CupertinoDateSelector.year(
         initialDateTime: initialDateTime,
         minDateTime: minDateTime,
@@ -1018,6 +1250,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
         buttonContent: buttonContent,
         buttonAlignment: buttonAlignment,
         submitButtonDecoration: submitButtonDecoration,
+        modifiers: modifiers,
       ),
     );
   }
@@ -1040,9 +1273,12 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
+    CupertinoDateSelectorController? controller,
   }) {
     return CupertinoDateSelectorWidget._(
       key: key,
+      controller: controller,
       selector: CupertinoDateSelector.monthYear(
         initialDateTime: initialDateTime,
         minDateTime: minDateTime,
@@ -1057,6 +1293,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
         buttonContent: buttonContent,
         buttonAlignment: buttonAlignment,
         submitButtonDecoration: submitButtonDecoration,
+        modifiers: modifiers,
       ),
     );
   }
@@ -1080,9 +1317,12 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
+    CupertinoDateSelectorController? controller,
   }) {
     return CupertinoDateSelectorWidget._(
       key: key,
+      controller: controller,
       selector: CupertinoDateSelector.month(
         initialDateTime: initialDateTime,
         onChange: onChanged ?? onChange,
@@ -1098,6 +1338,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
         buttonContent: buttonContent,
         buttonAlignment: buttonAlignment,
         submitButtonDecoration: submitButtonDecoration,
+        modifiers: modifiers,
       ),
     );
   }
@@ -1120,9 +1361,12 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
+    CupertinoDateSelectorController? controller,
   }) {
     return CupertinoDateSelectorWidget._(
       key: key,
+      controller: controller,
       selector: CupertinoDateSelector.duration(
         initialDuration: initialDuration,
         timerMode: timerMode,
@@ -1137,11 +1381,15 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
         buttonContent: buttonContent,
         buttonAlignment: buttonAlignment,
         submitButtonDecoration: submitButtonDecoration,
+        modifiers: modifiers,
       ),
     );
   }
 
   final CupertinoDateSelector selector;
+
+  /// Optional controller to jump the wheel from outside the widget.
+  final CupertinoDateSelectorController? controller;
 
   @override
   State<CupertinoDateSelectorWidget> createState() =>
@@ -1151,11 +1399,44 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
 class _CupertinoDateSelectorWidgetState
     extends State<CupertinoDateSelectorWidget> {
   late dynamic _currentValue;
+  late Key _pickerKey;
 
   @override
   void initState() {
     super.initState();
     _currentValue = widget.selector._initialValue();
+    _pickerKey = widget.controller != null
+        ? ValueKey<int>(widget.controller!.syncGeneration)
+        : const ValueKey<String>('cupertino_date_selector_picker');
+    widget.controller?.adoptValue(_currentValue);
+    widget.controller?.addListener(_onControllerSync);
+  }
+
+  @override
+  void dispose() {
+    widget.controller?.removeListener(_onControllerSync);
+    super.dispose();
+  }
+
+  void _onControllerSync() {
+    final CupertinoDateSelectorController? c = widget.controller;
+    if (!mounted || c == null) {
+      return;
+    }
+    setState(() {
+      _currentValue = c.value;
+      _pickerKey = ValueKey<int>(c.syncGeneration);
+    });
+  }
+
+  @override
+  void didUpdateWidget(covariant CupertinoDateSelectorWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.controller != widget.controller) {
+      oldWidget.controller?.removeListener(_onControllerSync);
+      widget.controller?.addListener(_onControllerSync);
+      widget.controller?.adoptValue(_currentValue);
+    }
   }
 
   @override
@@ -1166,12 +1447,22 @@ class _CupertinoDateSelectorWidgetState
       child: Column(
         children: [
           widget.selector._buildHeader(context),
-          // Container(height: 1, color: widget.selector.theme.dividerColor),
           Expanded(
-            child: widget.selector._buildPicker(_currentValue, (value) {
-              setState(() => _currentValue = value);
-              widget.selector.onChange?.call(value);
-            }),
+            child: KeyedSubtree(
+              key: _pickerKey,
+              child: widget.selector.buildPicker(
+                context,
+                value: _currentValue,
+                onChanged: (value) {
+                  setState(() => _currentValue = value);
+                  widget.controller?.adoptValue(value);
+                  if (widget.selector.selectionMode ==
+                      CupertinoDateSelectorSelectionMode.live) {
+                    widget.selector.onChange?.call(value);
+                  }
+                },
+              ),
+            ),
           ),
           if (widget.selector.showSubmitButton &&
               widget.selector.onSubmit != null)
@@ -1195,6 +1486,11 @@ class _CupertinoDateSelectorWidgetState
                           horizontal: 16,
                         ),
                         onPressed: () {
+                          if (widget.selector.selectionMode ==
+                              CupertinoDateSelectorSelectionMode
+                                  .commitOnSubmit) {
+                            widget.selector.onChange?.call(_currentValue);
+                          }
                           widget.selector.onSubmit?.call(_currentValue);
                         },
                         child:
@@ -1218,5 +1514,29 @@ class _CupertinoDateSelectorWidgetState
     }
 
     return content;
+  }
+}
+
+/// Picker wheels only — no header, divider, or submit area.
+///
+/// Use inside your own sheet or card; you keep [value] in parent state.
+class CupertinoDateSelectorPickerBody extends StatelessWidget {
+  const CupertinoDateSelectorPickerBody({
+    super.key,
+    required this.selector,
+    required this.value,
+    required this.onChanged,
+  });
+
+  /// Configuration from a [CupertinoDateSelector] factory.
+  final CupertinoDateSelector selector;
+
+  final dynamic value;
+
+  final ValueChanged<dynamic> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return selector.buildPicker(context, value: value, onChanged: onChanged);
   }
 }

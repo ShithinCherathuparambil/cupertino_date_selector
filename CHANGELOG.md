@@ -1,3 +1,16 @@
+## 0.0.3
+
+* Added `CupertinoDateSelectorModifiers` (selection mode, haptics, locale, modal
+  barrier color, `useRootNavigator`, custom month labels, semantics).
+* Added `CupertinoDateSelectorSelectionMode` (`live` vs `commitOnSubmit`).
+* Added `CupertinoDateSelectorController` with `jumpTo` for programmatic wheel sync.
+* Added `CupertinoDateSelectorPickerBody` for wheel-only embedding in custom UI.
+* Localized month wheel labels via `intl` (optional `monthLabelBuilder` override).
+* Added `CupertinoDateSelectorThemeData.selectedWheelItemTextStyle` for year/month wheels.
+* Modal `show` uses `StatefulBuilder` so submit uses the latest value; supports
+  barrier color and `useRootNavigator` via modifiers.
+* Pubspec `topics`; example Recipes screen; widget tests.
+
 ## 0.0.2
 
 * Added `CupertinoDateSelectorWidget` inline widget constructors for all picker modes.

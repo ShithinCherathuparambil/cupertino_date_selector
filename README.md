@@ -14,6 +14,9 @@ It supports both:
 - Theme configuration through `CupertinoDateSelectorThemeData`
 - Custom header and custom submit button content
 - RTL/LTR support and safe-area handling
+- Optional `CupertinoDateSelectorModifiers` (haptics, `commitOnSubmit`, modal barrier, locale)
+- `CupertinoDateSelectorPickerBody` for custom chrome around wheels only
+- `CupertinoDateSelectorController` + `jumpTo` for programmatic selection (inline widget)
 
 ## Installation
 
@@ -21,7 +24,7 @@ Add this package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  cupertino_date_selector: ^0.0.2
+  cupertino_date_selector: ^0.0.3
 ```
 
 Then run:
@@ -90,11 +93,48 @@ Examples:
 
 ## Callbacks
 
-- `onChange` / `onChanged`: Fires when wheel value changes
+- `onChange` / `onChanged`: Fires when the wheel value changes (see selection mode below)
 - `onSubmit`: Fires when submit button is tapped
 - `onDismiss`: Bottom sheet only; fires when modal is dismissed
 
 Note: submit button is shown only when `onSubmit` is provided.
+
+### Selection mode
+
+Pass `modifiers: CupertinoDateSelectorModifiers(selectionMode: …)`:
+
+- `CupertinoDateSelectorSelectionMode.live` (default): `onChange` / `onChanged` on every tick.
+- `CupertinoDateSelectorSelectionMode.commitOnSubmit`: no change callbacks while scrolling;
+  on submit, `onSubmit` runs and `onChange` / `onChanged` runs once with the final value.
+
+## Modifiers, picker-only, controller
+
+```dart
+// Custom sheet: only the wheels
+CupertinoDateSelectorPickerBody(
+  selector: CupertinoDateSelector.items(
+    items: const [Text('S'), Text('M'), Text('L')],
+    selectedItemIndex: 0,
+  ),
+  value: index,
+  onChanged: (v) => setState(() => index = v as int),
+);
+
+// Programmatic year jumps (inline widget)
+final c = CupertinoDateSelectorController();
+CupertinoDateSelectorWidget.year(
+  initialDateTime: DateTime(2020),
+  minDateTime: DateTime(2010),
+  maxDateTime: DateTime(2030),
+  controller: c,
+  onSubmit: (d) {},
+);
+// … later
+c.jumpTo(DateTime(2025));
+```
+
+Month names use `intl` and `Localizations` / `modifiers.locale`. Override with
+`modifiers: CupertinoDateSelectorModifiers(monthLabelBuilder: (m, loc) => '…')`.
 
 ## Theming
 
@@ -118,4 +158,5 @@ theme: const CupertinoDateSelectorThemeData(
 
 ## Example app
 
-A complete demo is available in `example/lib/main.dart` covering all picker modes for both modal and inline widget usage.
+See `example/lib/main.dart` for all modes. `example/lib/recipes_screen.dart` shows
+picker-only layout, modifiers, and controller usage.

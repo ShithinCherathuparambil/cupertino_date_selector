@@ -28,6 +28,7 @@ class CupertinoDateSelectorThemeData {
       fontWeight: FontWeight.w400,
       color: CupertinoColors.label,
     ),
+    this.selectedWheelItemTextStyle,
     this.topCornerRadius = 16,
   });
 
@@ -43,6 +44,11 @@ class CupertinoDateSelectorThemeData {
   final String defaultButtonText;
   final Color dividerColor;
   final TextStyle itemTextStyle;
+
+  /// Style for the centered item in custom [CupertinoPicker] wheels (year/month).
+  /// When null, [itemTextStyle] is used for every row.
+  final TextStyle? selectedWheelItemTextStyle;
+
   final double topCornerRadius;
 
   CupertinoDateSelectorThemeData copyWith({
@@ -58,6 +64,7 @@ class CupertinoDateSelectorThemeData {
     String? defaultButtonText,
     Color? dividerColor,
     TextStyle? itemTextStyle,
+    TextStyle? selectedWheelItemTextStyle,
     double? topCornerRadius,
   }) {
     return CupertinoDateSelectorThemeData(
@@ -73,6 +80,8 @@ class CupertinoDateSelectorThemeData {
       defaultButtonText: defaultButtonText ?? this.defaultButtonText,
       dividerColor: dividerColor ?? this.dividerColor,
       itemTextStyle: itemTextStyle ?? this.itemTextStyle,
+      selectedWheelItemTextStyle:
+          selectedWheelItemTextStyle ?? this.selectedWheelItemTextStyle,
       topCornerRadius: topCornerRadius ?? this.topCornerRadius,
     );
   }

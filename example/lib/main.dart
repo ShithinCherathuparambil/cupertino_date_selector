@@ -2,6 +2,8 @@ import 'package:cupertino_date_selector/cupertino_date_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'recipes_screen.dart';
+
 void main() {
   runApp(const ExampleApp());
 }
@@ -50,6 +52,11 @@ class _DemoHomePageState extends State<DemoHomePage> {
             ),
           ),
           const SizedBox(height: 8),
+          _demoButton('Recipes (advanced patterns)', () {
+            Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => const RecipesScreen()),
+            );
+          }),
           _demoButton('Items', () async {
             await CupertinoDateSelector.items(
               items: const [Text('One'), Text('Two'), Text('Three')],
