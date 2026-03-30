@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart' hide TextDirection;
@@ -7,6 +8,16 @@ import 'cupertino_date_selector_controller.dart';
 import 'cupertino_date_selector_modifiers.dart';
 import 'cupertino_date_selector_selection_mode.dart';
 import 'cupertino_date_selector_theme.dart';
+
+/// Light haptic on each wheel step. Uses [HapticFeedback.selectionClick] on
+/// platforms where Flutter supports it (iOS, Android, desktop where available);
+/// skipped on web where vibration is unavailable.
+void _wheelSelectionHaptic() {
+  if (kIsWeb) {
+    return;
+  }
+  HapticFeedback.selectionClick();
+}
 
 /// Builder used to render a custom selector header.
 typedef SelectorHeaderBuilder =
@@ -59,7 +70,7 @@ class CupertinoDateSelector {
     this.selectedItemIndex = 0,
     this.dateOrder,
     this.selectionMode = CupertinoDateSelectorSelectionMode.live,
-    this.enableHapticFeedback = false,
+    this.enableHapticFeedback = true,
     this.locale,
     this.modalBarrierColor,
     this.useRootNavigator = false,
@@ -90,6 +101,7 @@ class CupertinoDateSelector {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    bool? enableHapticFeedback,
     CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
   }) {
     return CupertinoDateSelector._(
@@ -114,7 +126,8 @@ class CupertinoDateSelector {
       submitButtonDecoration: submitButtonDecoration,
       selectionMode:
           modifiers.selectionMode ?? CupertinoDateSelectorSelectionMode.live,
-      enableHapticFeedback: modifiers.enableHapticFeedback ?? false,
+      enableHapticFeedback:
+          enableHapticFeedback ?? modifiers.enableHapticFeedback ?? true,
       locale: modifiers.locale,
       modalBarrierColor: modifiers.modalBarrierColor,
       useRootNavigator: modifiers.useRootNavigator ?? false,
@@ -143,6 +156,7 @@ class CupertinoDateSelector {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    bool? enableHapticFeedback,
     CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
   }) {
     return CupertinoDateSelector._(
@@ -172,7 +186,8 @@ class CupertinoDateSelector {
       submitButtonDecoration: submitButtonDecoration,
       selectionMode:
           modifiers.selectionMode ?? CupertinoDateSelectorSelectionMode.live,
-      enableHapticFeedback: modifiers.enableHapticFeedback ?? false,
+      enableHapticFeedback:
+          enableHapticFeedback ?? modifiers.enableHapticFeedback ?? true,
       locale: modifiers.locale,
       modalBarrierColor: modifiers.modalBarrierColor,
       useRootNavigator: modifiers.useRootNavigator ?? false,
@@ -200,6 +215,7 @@ class CupertinoDateSelector {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    bool? enableHapticFeedback,
     CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
   }) {
     return CupertinoDateSelector._(
@@ -228,7 +244,8 @@ class CupertinoDateSelector {
       submitButtonDecoration: submitButtonDecoration,
       selectionMode:
           modifiers.selectionMode ?? CupertinoDateSelectorSelectionMode.live,
-      enableHapticFeedback: modifiers.enableHapticFeedback ?? false,
+      enableHapticFeedback:
+          enableHapticFeedback ?? modifiers.enableHapticFeedback ?? true,
       locale: modifiers.locale,
       modalBarrierColor: modifiers.modalBarrierColor,
       useRootNavigator: modifiers.useRootNavigator ?? false,
@@ -258,6 +275,7 @@ class CupertinoDateSelector {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    bool? enableHapticFeedback,
     CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
   }) {
     return CupertinoDateSelector._(
@@ -288,7 +306,8 @@ class CupertinoDateSelector {
       submitButtonDecoration: submitButtonDecoration,
       selectionMode:
           modifiers.selectionMode ?? CupertinoDateSelectorSelectionMode.live,
-      enableHapticFeedback: modifiers.enableHapticFeedback ?? false,
+      enableHapticFeedback:
+          enableHapticFeedback ?? modifiers.enableHapticFeedback ?? true,
       locale: modifiers.locale,
       modalBarrierColor: modifiers.modalBarrierColor,
       useRootNavigator: modifiers.useRootNavigator ?? false,
@@ -316,6 +335,7 @@ class CupertinoDateSelector {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    bool? enableHapticFeedback,
     CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
   }) {
     return CupertinoDateSelector._(
@@ -344,7 +364,8 @@ class CupertinoDateSelector {
       submitButtonDecoration: submitButtonDecoration,
       selectionMode:
           modifiers.selectionMode ?? CupertinoDateSelectorSelectionMode.live,
-      enableHapticFeedback: modifiers.enableHapticFeedback ?? false,
+      enableHapticFeedback:
+          enableHapticFeedback ?? modifiers.enableHapticFeedback ?? true,
       locale: modifiers.locale,
       modalBarrierColor: modifiers.modalBarrierColor,
       useRootNavigator: modifiers.useRootNavigator ?? false,
@@ -372,6 +393,7 @@ class CupertinoDateSelector {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    bool? enableHapticFeedback,
     CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
   }) {
     return CupertinoDateSelector._(
@@ -400,7 +422,8 @@ class CupertinoDateSelector {
       submitButtonDecoration: submitButtonDecoration,
       selectionMode:
           modifiers.selectionMode ?? CupertinoDateSelectorSelectionMode.live,
-      enableHapticFeedback: modifiers.enableHapticFeedback ?? false,
+      enableHapticFeedback:
+          enableHapticFeedback ?? modifiers.enableHapticFeedback ?? true,
       locale: modifiers.locale,
       modalBarrierColor: modifiers.modalBarrierColor,
       useRootNavigator: modifiers.useRootNavigator ?? false,
@@ -429,6 +452,7 @@ class CupertinoDateSelector {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    bool? enableHapticFeedback,
     CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
   }) {
     return CupertinoDateSelector._(
@@ -458,7 +482,8 @@ class CupertinoDateSelector {
       submitButtonDecoration: submitButtonDecoration,
       selectionMode:
           modifiers.selectionMode ?? CupertinoDateSelectorSelectionMode.live,
-      enableHapticFeedback: modifiers.enableHapticFeedback ?? false,
+      enableHapticFeedback:
+          enableHapticFeedback ?? modifiers.enableHapticFeedback ?? true,
       locale: modifiers.locale,
       modalBarrierColor: modifiers.modalBarrierColor,
       useRootNavigator: modifiers.useRootNavigator ?? false,
@@ -486,6 +511,7 @@ class CupertinoDateSelector {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    bool? enableHapticFeedback,
     CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
   }) {
     return CupertinoDateSelector._(
@@ -514,7 +540,8 @@ class CupertinoDateSelector {
       submitButtonDecoration: submitButtonDecoration,
       selectionMode:
           modifiers.selectionMode ?? CupertinoDateSelectorSelectionMode.live,
-      enableHapticFeedback: modifiers.enableHapticFeedback ?? false,
+      enableHapticFeedback:
+          enableHapticFeedback ?? modifiers.enableHapticFeedback ?? true,
       locale: modifiers.locale,
       modalBarrierColor: modifiers.modalBarrierColor,
       useRootNavigator: modifiers.useRootNavigator ?? false,
@@ -685,7 +712,7 @@ class CupertinoDateSelector {
   ) {
     void forward(dynamic v) {
       if (enableHapticFeedback) {
-        HapticFeedback.selectionClick();
+        _wheelSelectionHaptic();
       }
       onValueChange(v);
     }
@@ -697,6 +724,7 @@ class CupertinoDateSelector {
       return CupertinoPicker(
         scrollController: controller,
         itemExtent: itemExtent,
+        backgroundColor: theme.backgroundColor,
         selectionOverlay: selectionOverlay,
         onSelectedItemChanged: forward,
         children: items,
@@ -708,6 +736,7 @@ class CupertinoDateSelector {
         mode: timerMode,
         initialTimerDuration: initialValue as Duration,
         secondInterval: timerSecondInterval,
+        backgroundColor: theme.backgroundColor,
         onTimerDurationChanged: forward,
       );
     }
@@ -749,6 +778,7 @@ class CupertinoDateSelector {
       maximumDate: normalizedMaximumDate,
       minuteInterval: minuteInterval,
       use24hFormat: use24hFormat,
+      backgroundColor: theme.backgroundColor,
       onDateTimeChanged: (date) => forward(_normalizeDate(date)),
     );
   }
@@ -912,6 +942,7 @@ class CupertinoDateSelector {
       itemCount: years.length,
       initialItemIndex: initialItem,
       itemExtent: itemExtent,
+      backgroundColor: theme.backgroundColor,
       selectionOverlay: selectionOverlay,
       onSelectedItemChanged: (index) => onValueChange(DateTime(years[index])),
       itemBuilder: (context, index, isSelected) => Center(
@@ -935,6 +966,7 @@ class CupertinoDateSelector {
       itemCount: 12,
       initialItemIndex: initialItem,
       itemExtent: itemExtent,
+      backgroundColor: theme.backgroundColor,
       selectionOverlay: selectionOverlay,
       onSelectedItemChanged: (index) =>
           onValueChange(DateTime(1, index + 1)),
@@ -962,6 +994,7 @@ class _StyledIndexPicker extends StatefulWidget {
     required this.itemCount,
     required this.initialItemIndex,
     required this.itemExtent,
+    required this.backgroundColor,
     required this.selectionOverlay,
     required this.onSelectedItemChanged,
     required this.itemBuilder,
@@ -970,6 +1003,7 @@ class _StyledIndexPicker extends StatefulWidget {
   final int itemCount;
   final int initialItemIndex;
   final double itemExtent;
+  final Color backgroundColor;
   final Widget? selectionOverlay;
   final ValueChanged<int> onSelectedItemChanged;
   final _PickerItemBuilder itemBuilder;
@@ -1009,6 +1043,7 @@ class _StyledIndexPickerState extends State<_StyledIndexPicker> {
     return CupertinoPicker(
       scrollController: _scrollController,
       itemExtent: widget.itemExtent,
+      backgroundColor: widget.backgroundColor,
       selectionOverlay: widget.selectionOverlay,
       onSelectedItemChanged: (index) {
         setState(() => _selectedIndex = index);
@@ -1050,6 +1085,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    bool? enableHapticFeedback,
     CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
     CupertinoDateSelectorController? controller,
   }) {
@@ -1072,6 +1108,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
         buttonContent: buttonContent,
         buttonAlignment: buttonAlignment,
         submitButtonDecoration: submitButtonDecoration,
+        enableHapticFeedback: enableHapticFeedback,
         modifiers: modifiers,
       ),
     );
@@ -1096,6 +1133,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    bool? enableHapticFeedback,
     CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
     CupertinoDateSelectorController? controller,
   }) {
@@ -1117,6 +1155,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
         buttonContent: buttonContent,
         buttonAlignment: buttonAlignment,
         submitButtonDecoration: submitButtonDecoration,
+        enableHapticFeedback: enableHapticFeedback,
         modifiers: modifiers,
       ),
     );
@@ -1140,6 +1179,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    bool? enableHapticFeedback,
     CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
     CupertinoDateSelectorController? controller,
   }) {
@@ -1160,6 +1200,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
         buttonContent: buttonContent,
         buttonAlignment: buttonAlignment,
         submitButtonDecoration: submitButtonDecoration,
+        enableHapticFeedback: enableHapticFeedback,
         modifiers: modifiers,
       ),
     );
@@ -1185,6 +1226,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    bool? enableHapticFeedback,
     CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
     CupertinoDateSelectorController? controller,
   }) {
@@ -1207,6 +1249,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
         buttonContent: buttonContent,
         buttonAlignment: buttonAlignment,
         submitButtonDecoration: submitButtonDecoration,
+        enableHapticFeedback: enableHapticFeedback,
         modifiers: modifiers,
       ),
     );
@@ -1230,6 +1273,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    bool? enableHapticFeedback,
     CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
     CupertinoDateSelectorController? controller,
   }) {
@@ -1250,6 +1294,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
         buttonContent: buttonContent,
         buttonAlignment: buttonAlignment,
         submitButtonDecoration: submitButtonDecoration,
+        enableHapticFeedback: enableHapticFeedback,
         modifiers: modifiers,
       ),
     );
@@ -1273,6 +1318,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    bool? enableHapticFeedback,
     CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
     CupertinoDateSelectorController? controller,
   }) {
@@ -1293,6 +1339,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
         buttonContent: buttonContent,
         buttonAlignment: buttonAlignment,
         submitButtonDecoration: submitButtonDecoration,
+        enableHapticFeedback: enableHapticFeedback,
         modifiers: modifiers,
       ),
     );
@@ -1317,6 +1364,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    bool? enableHapticFeedback,
     CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
     CupertinoDateSelectorController? controller,
   }) {
@@ -1338,6 +1386,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
         buttonContent: buttonContent,
         buttonAlignment: buttonAlignment,
         submitButtonDecoration: submitButtonDecoration,
+        enableHapticFeedback: enableHapticFeedback,
         modifiers: modifiers,
       ),
     );
@@ -1361,6 +1410,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
     Widget? buttonContent,
     MainAxisAlignment buttonAlignment = MainAxisAlignment.center,
     Decoration? submitButtonDecoration,
+    bool? enableHapticFeedback,
     CupertinoDateSelectorModifiers modifiers = const CupertinoDateSelectorModifiers(),
     CupertinoDateSelectorController? controller,
   }) {
@@ -1381,6 +1431,7 @@ class CupertinoDateSelectorWidget extends StatefulWidget {
         buttonContent: buttonContent,
         buttonAlignment: buttonAlignment,
         submitButtonDecoration: submitButtonDecoration,
+        enableHapticFeedback: enableHapticFeedback,
         modifiers: modifiers,
       ),
     );

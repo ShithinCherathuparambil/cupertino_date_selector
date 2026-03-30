@@ -1,3 +1,11 @@
+## Unreleased
+
+* Optional `enableHapticFeedback` on every `CupertinoDateSelector` /
+  `CupertinoDateSelectorWidget` factory; when set, it overrides
+  `CupertinoDateSelectorModifiers.enableHapticFeedback`.
+* Wheel haptics **on by default** (`HapticFeedback.selectionClick`); skipped on **web**;
+  Android example app declares **`VIBRATE`** and **`enableOnBackInvokedCallback`**.
+
 ## 0.0.3
 
 * Added `CupertinoDateSelectorModifiers` (selection mode, haptics, locale, modal

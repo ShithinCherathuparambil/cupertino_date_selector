@@ -20,6 +20,7 @@ class CupertinoDateSelectorModifiers {
   final CupertinoDateSelectorSelectionMode? selectionMode;
 
   /// Light haptic on each wheel selection change (items, wheels, timer).
+  /// When null, haptics follow the factory default (on); use `false` to turn off.
   final bool? enableHapticFeedback;
 
   /// Locale for month names when using the default month label formatter.

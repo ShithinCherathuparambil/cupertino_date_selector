@@ -32,6 +32,8 @@ class CupertinoDateSelectorThemeData {
     this.topCornerRadius = 16,
   });
 
+  /// Fills the modal / inline chrome and the scrollable wheels
+  /// ([CupertinoDatePicker], [CupertinoPicker], [CupertinoTimerPicker]).
   final Color backgroundColor;
   final EdgeInsetsGeometry headerPadding;
   final TextStyle headerTextStyle;

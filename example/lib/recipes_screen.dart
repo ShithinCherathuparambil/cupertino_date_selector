@@ -100,7 +100,6 @@ class _RecipesScreenState extends State<RecipesScreen> {
               onChanged: (_) => setState(() {}),
               onSubmit: (_) {},
               modifiers: const CupertinoDateSelectorModifiers(
-                enableHapticFeedback: true,
                 semanticsLabel: 'Year picker',
               ),
             ),

@@ -4,6 +4,17 @@ import 'package:flutter/material.dart';
 
 import 'recipes_screen.dart';
 
+/// Shared demo theme: custom sheet + wheel [CupertinoDateSelectorThemeData.backgroundColor].
+const CupertinoDateSelectorThemeData kExampleCupertinoPickerTheme =
+    CupertinoDateSelectorThemeData(
+      backgroundColor: Colors.red,
+      itemTextStyle: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
+        color: Color(0xFF181818),
+      ),
+    );
+
 void main() {
   runApp(const ExampleApp());
 }
@@ -61,7 +72,7 @@ class _DemoHomePageState extends State<DemoHomePage> {
             await CupertinoDateSelector.items(
               items: const [Text('One'), Text('Two'), Text('Three')],
               selectedItemIndex: 0,
-              theme: const CupertinoDateSelectorThemeData(
+              theme: kExampleCupertinoPickerTheme.copyWith(
                 defaultButtonText: 'Done',
               ),
               onSubmit: (index) => _setResult('Items → index: $index'),
@@ -71,8 +82,10 @@ class _DemoHomePageState extends State<DemoHomePage> {
             final now = DateTime.now();
             await CupertinoDateSelector.date(
               initialDateTime: now,
+              enableHapticFeedback: true,
               minDateTime: now.subtract(const Duration(days: 365)),
               maxDateTime: now.add(const Duration(days: 365)),
+              theme: kExampleCupertinoPickerTheme,
               onSubmit: (d) => _setResult('Date → $d'),
             ).show(context);
           }),
@@ -81,6 +94,7 @@ class _DemoHomePageState extends State<DemoHomePage> {
               initialDateTime: DateTime.now(),
               minuteInterval: 5,
               use24hFormat: true,
+              theme: kExampleCupertinoPickerTheme,
               onSubmit: (d) => _setResult('Time → $d'),
             ).show(context);
           }),
@@ -92,6 +106,7 @@ class _DemoHomePageState extends State<DemoHomePage> {
               maxDateTime: now.add(const Duration(days: 30)),
               minuteInterval: 15,
               use24hFormat: false,
+              theme: kExampleCupertinoPickerTheme,
               onSubmit: (d) => _setResult('DateTime → $d'),
             ).show(context);
           }),
@@ -101,6 +116,7 @@ class _DemoHomePageState extends State<DemoHomePage> {
               initialDateTime: now,
               minDateTime: DateTime(now.year - 10),
               maxDateTime: DateTime(now.year + 10),
+              theme: kExampleCupertinoPickerTheme,
               onSubmit: (d) => _setResult('Year → $d'),
             ).show(context);
           }),
@@ -110,6 +126,7 @@ class _DemoHomePageState extends State<DemoHomePage> {
               initialDateTime: now,
               minDateTime: DateTime(now.year - 2),
               maxDateTime: DateTime(now.year + 2, 12),
+              theme: kExampleCupertinoPickerTheme,
               onSubmit: (d) => _setResult('MonthYear → $d'),
             ).show(context);
           }),
@@ -170,12 +187,14 @@ class _DemoHomePageState extends State<DemoHomePage> {
           _demoButton('Month', () async {
             await CupertinoDateSelector.month(
               initialDateTime: DateTime.now(),
+              theme: kExampleCupertinoPickerTheme,
               onSubmit: (d) => _setResult('Month → ${d.month}'),
             ).show(context);
           }),
           _demoButton('Duration', () async {
             await CupertinoDateSelector.duration(
               initialDuration: const Duration(hours: 1, minutes: 30),
+              theme: kExampleCupertinoPickerTheme,
               onSubmit: (d) => _setResult('Duration → $d'),
             ).show(context);
           }),
@@ -469,18 +488,25 @@ class _MonthYearWidgetScreenState extends State<MonthYearWidgetScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Selected: ${selectedDate.month}/${selectedDate.year}',
-            style: Theme.of(context).textTheme.titleMedium,
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+            child: Text(
+              'Selected: ${selectedDate.month}/${selectedDate.year}',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
           ),
-          const SizedBox(height: 12),
-          CupertinoDateSelectorWidget.monthYear(
-            initialDateTime: selectedDate,
-            minDateTime: DateTime(DateTime.now().year - 2, 1),
-            maxDateTime: DateTime(DateTime.now().year + 100, 12),
-            onChanged: (DateTime d) {
-              setState(() => selectedDate = d);
-            },
+
+          Expanded(
+            child: CupertinoDateSelectorWidget.monthYear(
+              initialDateTime: selectedDate,
+
+              minDateTime: DateTime(DateTime.now().year - 2, 1),
+              maxDateTime: DateTime(DateTime.now().year + 100, 12),
+              theme: kExampleCupertinoPickerTheme,
+              onChanged: (DateTime d) {
+                setState(() => selectedDate = d);
+              },
+            ),
           ),
         ],
       ),
@@ -511,6 +537,8 @@ class _ItemsWidgetScreenState extends State<ItemsWidgetScreen> {
           ),
           const SizedBox(height: 12),
           CupertinoDateSelectorWidget.items(
+            enableHapticFeedback: true,
+            theme: kExampleCupertinoPickerTheme,
             items: const [Text('One'), Text('Two'), Text('Three')],
             selectedItemIndex: selectedIndex,
             onChanged: (int index) {
