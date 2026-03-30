@@ -28,7 +28,7 @@ A customizable Cupertino-style selector package for Flutter: modal bottom sheets
 
 ```yaml
 dependencies:
-  cupertino_date_selector: ^0.0.5
+  cupertino_date_selector: ^0.0.6
 ```
 
 ```bash
@@ -282,32 +282,32 @@ cd example && flutter run
 
 ## Screenshots (example gallery)
 
-Captures from the sample app. Images load from the repo’s `main` branch ([`assets/`](https://github.com/ShithinCherathuparambil/cupertino_date_selector/tree/main/assets)); if a preview fails to load, open the [raw file](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_date.png) directly.
+Captures from the sample app. Images load from the repo’s `main` branch ([`assets/`](https://github.com/ShithinCherathuparambil/cupertino_date_selector/tree/main/assets)). Previews are **scaled to 280px wide** for readability on pub.dev; open the [raw PNG](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_date.png) for full resolution.
 
 ### Home screen + modal bottom sheet
 
 | Demo | Preview |
 |------|---------|
-| Custom items | ![Custom items — modal bottom sheet](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_items.png) |
-| Date | ![Date — modal bottom sheet](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_date.png) |
-| Time | ![Time — modal bottom sheet](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_time.png) |
-| Date and time | ![Date and time — modal bottom sheet](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_datetime.png) |
-| Year | ![Year — modal bottom sheet](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_year.png) |
-| Month & year | ![Month & year — modal bottom sheet](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_month_year.png) |
-| Month & year (alt) | ![Month & year — modal bottom sheet (variant)](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_month_year_2.png) |
-| Month only | ![Month only — modal bottom sheet](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_month.png) |
-| Duration | ![Duration — modal bottom sheet](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_duration.png) |
-| Design / custom month & year sheet | ![Custom month & year design sheet](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_design_month_year.png) |
+| Custom items | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_items.png" width="280" alt="Custom items — modal bottom sheet" /> |
+| Date | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_date.png" width="280" alt="Date — modal bottom sheet" /> |
+| Time | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_time.png" width="280" alt="Time — modal bottom sheet" /> |
+| Date and time | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_datetime.png" width="280" alt="Date and time — modal bottom sheet" /> |
+| Year | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_year.png" width="280" alt="Year — modal bottom sheet" /> |
+| Month & year | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_month_year.png" width="280" alt="Month & year — modal bottom sheet" /> |
+| Month & year (alt) | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_month_year_2.png" width="280" alt="Month & year — modal bottom sheet (variant)" /> |
+| Month only | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_month.png" width="280" alt="Month only — modal bottom sheet" /> |
+| Duration | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_duration.png" width="280" alt="Duration — modal bottom sheet" /> |
+| Design / custom month & year sheet | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_design_month_year.png" width="280" alt="Custom month & year design sheet" /> |
 
 ### Full-screen inline widget demos
 
 | Screen | Preview |
 |--------|---------|
-| Month & year widget | ![Month & year widget screen](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_month_year_widget.png) |
-| Items widget | ![Items widget screen](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_items_widget.png) |
-| Date widget | ![Date widget screen](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_date_widget.png) |
-| Time widget | ![Time widget screen](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_time_widget.png) |
-| Year widget | ![Year widget screen](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_year_widget.png) |
-| Year widget (alt) | ![Year widget screen (variant)](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_year_widget_2.png) |
-| Month widget | ![Month widget screen](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_month_widget.png) |
-| Duration widget | ![Duration widget screen](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_duration_widget.png) |
+| Month & year widget | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_month_year_widget.png" width="280" alt="Month & year widget screen" /> |
+| Items widget | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_items_widget.png" width="280" alt="Items widget screen" /> |
+| Date widget | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_date_widget.png" width="280" alt="Date widget screen" /> |
+| Time widget | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_time_widget.png" width="280" alt="Time widget screen" /> |
+| Year widget | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_year_widget.png" width="280" alt="Year widget screen" /> |
+| Year widget (alt) | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_year_widget_2.png" width="280" alt="Year widget screen (variant)" /> |
+| Month widget | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_month_widget.png" width="280" alt="Month widget screen" /> |
+| Duration widget | <img src="https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_duration_widget.png" width="280" alt="Duration widget screen" /> |

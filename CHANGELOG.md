@@ -1,3 +1,7 @@
+## 0.0.6
+
+* README: screenshot previews use HTML `<img width="280">` so pub.dev shows compact, readable thumbnails.
+
 ## 0.0.5
 
 * README: screenshot gallery renders embedded images on pub.dev (Markdown `![…](raw URL)`).
