@@ -1,3 +1,7 @@
+## 0.0.5
+
+* README: screenshot gallery renders embedded images on pub.dev (Markdown `![…](raw URL)`).
+
 ## 0.0.4
 
 * Optional `enableHapticFeedback` on every `CupertinoDateSelector` /

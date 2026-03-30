@@ -28,7 +28,7 @@ A customizable Cupertino-style selector package for Flutter: modal bottom sheets
 
 ```yaml
 dependencies:
-  cupertino_date_selector: ^0.0.4
+  cupertino_date_selector: ^0.0.5
 ```
 
 ```bash
