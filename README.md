@@ -22,6 +22,7 @@ A customizable Cupertino-style selector package for Flutter: modal bottom sheets
 - [Roadmap & possible extensions](#roadmap--possible-extensions)
 - [Notes for app developers](#notes-for-app-developers)
 - [Example app](#example-app)
+- [Screenshots (example gallery)](#screenshots-example-gallery)
 
 ## Installation
 
@@ -277,4 +278,43 @@ Run:
 
 ```bash
 cd example && flutter run
+```
+
+## Screenshots (example gallery)
+
+
+**Base prefix:** `https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/`
+
+### Home screen + modal bottom sheet
+
+| Demo | Raw file (click for URL) |
+|------|--------------------------|
+| Custom items | [`screen_home_bottomsheet_items.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_items.png) |
+| Date | [`screen_home_bottomsheet_date.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_date.png) |
+| Time | [`screen_home_bottomsheet_time.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_time.png) |
+| Date and time | [`screen_home_bottomsheet_datetime.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_datetime.png) |
+| Year | [`screen_home_bottomsheet_year.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_year.png) |
+| Month & year | [`screen_home_bottomsheet_month_year.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_month_year.png) |
+| Month & year (alt) | [`screen_home_bottomsheet_month_year_2.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_month_year_2.png) |
+| Month only | [`screen_home_bottomsheet_month.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_month.png) |
+| Duration | [`screen_home_bottomsheet_duration.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_duration.png) |
+| Design / custom month & year sheet | [`screen_home_bottomsheet_design_month_year.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_design_month_year.png) |
+
+### Full-screen inline widget demos
+
+| Screen | Raw file (click for URL) |
+|--------|--------------------------|
+| Month & year widget | [`screen_month_year_widget.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_month_year_widget.png) |
+| Items widget | [`screen_items_widget.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_items_widget.png) |
+| Date widget | [`screen_date_widget.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_date_widget.png) |
+| Time widget | [`screen_time_widget.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_time_widget.png) |
+| Year widget | [`screen_year_widget.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_year_widget.png) |
+| Year widget (alt) | [`screen_year_widget_2.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_year_widget_2.png) |
+| Month widget | [`screen_month_widget.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_month_widget.png) |
+| Duration widget | [`screen_duration_widget.png`](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_duration_widget.png) |
+
+**Markdown example** (inline image for pub.dev or GitHub):
+
+```markdown
+![Date picker modal](https://raw.githubusercontent.com/ShithinCherathuparambil/cupertino_date_selector/main/assets/screen_home_bottomsheet_date.png)
 ```
